@@ -1,5 +1,5 @@
 DAG-based service function chain
 
-Cofiguration:
+Configuration:
 
 ![DAG](assets/dag.png-1.png)
