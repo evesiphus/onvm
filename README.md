@@ -8,7 +8,7 @@ The experiments include 3 different Service Function Chaining (SFC) configuratio
 1. Linear 
 2. DAG 
 3. DAG-2
-4. tree
+4. Tree
 
 We conduct three types of experiments:
 
