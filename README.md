@@ -24,7 +24,7 @@ Please refer to each SFC directory for data and further details.
 
 ### CSV files for each experiment: 
 
-#### Files omnipresented in all experiments: 
+#### Files omnipresent in all experiments: 
 * __tx_stats__: Statistics for the input traffic. The input traffic was generated and recorded using the [MoonGen](https://github.com/emmericp/MoonGen.git) traffic generator. The generated synthetic packets follow either pure 128 B or the Internet IMIX distribution (i.e., 64B: 512B: 1024B = 7:4:1). Please refer to the *tx_stats.csv* file in each directory to check the packet size distribution. Normally, the packet rate of IMIX should not surpass 4 Mpps (i.e., million packets per second). A sample tx_stats record is illustrated below: 
   
 | Time | Device | Direction | PacketRate | Mbit | MbitWithFraming | TotalPackets | TotalBytes |
@@ -43,7 +43,7 @@ Please refer to each SFC directory for data and further details.
 |--------------|--------------|
 | 188 | 3765443 |
 
-*__nf__: Statistics of individual VNFs measured by [Perf](https://perf.wiki.kernel.org/index.php/Main_Page). The interesting features include CPU frequency, l1-dcache-misses, and LLC cache references, and so on. 
+* __nf__: Statistics of individual VNFs measured by [Perf](https://perf.wiki.kernel.org/index.php/Main_Page). The interesting features include CPU frequency, l1-dcache-misses, and LLC cache references, and so on. 
 
 #### Files specific to the ONVM platform
 * __nf_out__: This file is output by ONVM with the purpose of measuring the statistics of the individual VNFs on a configued SFC. Some interesting statistics include the TX/RX rates, RX/TX counts, TX/RX drop rates, TX/RX drops. The column names are listed as follows:
