@@ -43,7 +43,9 @@ Please refer to each SFC directory for data and further details.
 |--------------|--------------|
 | 188 | 3765443 |
 
-* __nf__: Statistics of individual VNFs measured by [Perf](https://perf.wiki.kernel.org/index.php/Main_Page) (e.g., firewall.csv, bridge.csv, etc.). The interesting features include CPU frequency, l1-dcache-misses, LLC cache references, etc. 
+
+* __nf__: Statistics of individual VNFs measured by [Perf](https://perf.wiki.kernel.org/index.php/Main_Page). The interesting features include CPU frequency, l1-dcache-misses, and LLC cache references, and so on. 
+
 
 #### Files specific to the ONVM platform
 * __nf_out__: This file is output by ONVM to measure the statistics of the individual VNFs on a configured SFC. Some interesting statistics include the TX/RX rates, RX/TX counts, TX/RX drop rates, TX/RX drops. The column names are listed as follows:
