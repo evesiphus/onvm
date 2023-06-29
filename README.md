@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 # onvm
 
 This directory contains some explorative experimental results related to the high-speed OpenNetVM platform on a COTS server.
 =======
 ## Introduction
 This directory contains our explorative experiments of the state-of-the-art OpenNetVM (ONVM) [platform on a commodity off-the-shelf server. Our experiments focus on the performance diagnoses of ONVM. Please refer to the [main website]((https://github.com/sdnfv/openNetVM)) for further information. The general architecture of ONVM is illustrated below: 
->>>>>>> 5c44d7357fdc148f18b2fccf31c1b74d35e956ca
 
 ![fishy](netvm-arch.png)
 
