@@ -1,5 +1,5 @@
 Tree SFC topology
 
-Configuration:
+Configuration: 
 
-![Tree SFC](assets/tree.png-1.png)
+![Tree structure]assets/tree.png-1.png
