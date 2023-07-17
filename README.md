@@ -10,7 +10,7 @@ This directory contains our explorative experiments of the state-of-the-art Open
 The experiments include 5 different Service Function Chaining (SFC) configurations, namely:
 
 1. Linear 
-2. DAG 
+2. DAG-1 
 3. DAG-2
 4. Tree
 5. Bridge
