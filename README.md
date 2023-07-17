@@ -7,12 +7,13 @@ This directory contains our explorative experiments of the state-of-the-art Open
 
 ![fishy](netvm-arch.png)
 
-The experiments include 3 different Service Function Chaining (SFC) configurations, namely:
+The experiments include 5 different Service Function Chaining (SFC) configurations, namely:
 
 1. Linear 
 2. DAG 
 3. DAG-2
 4. Tree
+5. Bridge
 
 We conduct three types of experiments:
 
