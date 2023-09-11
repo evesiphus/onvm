@@ -1,0 +1,16 @@
+csv file explination:
+
+load_stimulus_global.csv: exp1_exp10
+load_stimulus_global_1.csv:exp1_exp10+fixed_5000+fixed_7500
+load_stimulus_global_2.csv:exp1_exp10+fixed_5000+fixed_7500+random
+load_stimulus_global_3.csv:exp1_exp10+random
+load_stimulus_global_4.csv:exp1_exp10+stage_random
+load_stimulus_global_random_rates:random_rates_exp-1+random_rates_exp-2
+    
+    
+Intervention:
+    
+37-43, cycles unchange
+51-55, latency seems wrong
+intervention_global:29-35
+intervention_global_1:25-35

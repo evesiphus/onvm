@@ -1,4 +1,4 @@
-Tree SFC topology
+Tree SFC topology （we did not deploy second layer）
 
 Configuration: 
 
