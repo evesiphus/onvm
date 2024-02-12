@@ -96,7 +96,7 @@ function loadSlave(queue, rxDev, size, flows)
 
 	os.execute("./scripts/start_sfc.sh &")
 
-	mg.sleepMillis(1000)
+	mg.sleepMillis(2500)
 	--os.execute("./scripts/perf.sh")
         os.execute("./scripts/pcm.sh")
 
