@@ -28,7 +28,7 @@ fi
 
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" &
 
-end=$((SECONDS+7200))
+end=$((SECONDS+18000))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
@@ -40,4 +40,6 @@ sudo killall onvm_mgr
 cp "${ONVM_HOME}/nf_out.csv" .
 
 sudo killall pcm
+sudo killall pcm-memory
+sudo killall pcm-pcie
 sudo killall MoonGen
