@@ -28,7 +28,7 @@ fi
 
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" &
 
-end=$((SECONDS+18000))
+end=$((SECONDS+1800))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
