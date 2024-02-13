@@ -29,7 +29,7 @@ fi
 
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" &
 
-end=$((SECONDS+7200))
+end=$((SECONDS+3600))
 
 sleep 50
 
