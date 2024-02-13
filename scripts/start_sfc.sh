@@ -15,4 +15,3 @@ else
 fi
 
 python3 run_group.py "${CURR_DIR}/scripts/${CONFIG}.json"
-
