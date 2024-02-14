@@ -43,9 +43,8 @@ while [ $SECONDS -lt $end ]; do
 	  echo -e "${nf} is intervened in this round"
           pid=$(pidof ${nf})
           core=$(ps -mo psr ${pid} | tail -n 1)
-          cpu=$(python3 -c "import numpy as np; print(np.random.randint(50,100))")
+          cache=$(python3 -c "import numpy as np; print(np.random.randint(1,5))")
           echo -e "${nf} pid ${pid}: the deprived CPU load is ${cpu}..."
-          #sudo taskset -c ${core} stress --cpu ${cpu} --timeout 10 &
           sudo timeout 20s cpulimit -p "${pid}" -l "${cpu}" &
        fi
     done
