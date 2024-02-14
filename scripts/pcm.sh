@@ -16,5 +16,5 @@ for val in ${VNFs[@]}; do
    fi
 done
 
-sudo /home/tzhang/pcm/build/bin/pcm-pcie -csv="pcm-pcie.csv" &
+sudo /home/tzhang/pcm/build/bin/pcm-pcie -e -csv="pcm-pcie.csv" &
 sudo /home/tzhang/pcm/build/bin/pcm-memory -csv="pcm-memory.csv" &

@@ -34,7 +34,6 @@ end=$((SECONDS+20000))
 sleep 50
 
 while [ $SECONDS -lt $end ]; do
-    # Do what you want.
     :
        FLIP=$(($(($RANDOM%10))%2))
        if [ $FLIP -eq 1 ];then

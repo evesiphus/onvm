@@ -29,25 +29,18 @@ fi
 
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" &
 
-end=$((SECONDS+3600))
+end=$((SECONDS+2000))
 
 sleep 50
 
 while [ $SECONDS -lt $end ]; do
     :
-    for nf in ${NFS[@]}
-    do
        FLIP=$(($(($RANDOM%10))%2))
        if [ $FLIP -eq 1 ];then
-	  echo -e "${nf} is intervened in this round"
-          pid=$(pidof ${nf})
-          core=$(ps -mo psr ${pid} | tail -n 1)
-          cache=$(python3 -c "import numpy as np; print(np.random.randint(1,5))")
-          echo -e "${nf} pid ${pid}: the deprived CPU load is ${cpu}..."
-          sudo timeout 20s cpulimit -p "${pid}" -l "${cpu}" &
+          vm=$(python3 -c "import numpy as np; print(np.random.randint(10,50))")
+          echo -e "Total ${vm} invoked VM workers"
+          sudo stress-ng --vm "${vm}" --taskset 9 --timeout 20
        fi
-    done
-    sleep 20
 done
 
 sudo killall onvm_mgr
