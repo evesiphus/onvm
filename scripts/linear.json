@@ -6,7 +6,7 @@
         ],
 	"firewall": [
                 {
-                        "parameters": "1 -d 2 -f /home/tzhang/rca-nfv/opennetvm/linear/config/rules.json"
+                        "parameters": "1 -d 2 -f /home/tzhang/onvm/linear/config/rules.json"
                 }
         ],
         "ndpi_stats": [
@@ -16,7 +16,7 @@
         ],
         "nf_router": [
                 {
-                        "parameters": "3 -f /home/tzhang/rca-nfv/opennetvm/linear/config/route.conf"
+                        "parameters": "3 -f /home/tzhang/onvm/linear/config/route.conf"
                 }
         ],
         "payload_scan": [

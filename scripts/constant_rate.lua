@@ -23,16 +23,16 @@ local DST_IP      = "10.0.0.1"
 local SRC_PORT    = 1234
 local DST_PORT    = 319
 
-local interval = 20
+local interval = 10
 local C = ffi.C
 
 function configure(parser)
 	parser:description("Generates UDP traffic and prints out device statistics. Edit the source to modify constants like IPs.")
 	parser:argument("txDev", "Device to transmit from."):convert(tonumber)
 	parser:argument("rxDev", "Device to receive from."):convert(tonumber)
-        parser:option("-r --rate", "Transmit rate in Mbit/s."):default(10000):convert(tonumber)
-        parser:option("-f --flows", "Number of flows (randomized source IP)."):default(2):convert(tonumber)
-        parser:option("-s --size", "Packet size."):default(60):convert(tonumber)
+	parser:option("-r --rate", "Transmit rate in Mbit/s."):default(5000):convert(tonumber)
+	parser:option("-f --flows", "Number of flows (randomized source IP)."):default(2):convert(tonumber)
+	parser:option("-s --size", "Packet size."):default(60):convert(tonumber)
         parser:option("-t --topology", "Network service topology."):default("linear"):convert(tostring)
 end
 
@@ -41,8 +41,8 @@ function master(args)
 	rxDev = device.config{port = args.rxDev, rxQueues = 4, txQueues = 4}
 	device.waitForLinks()
 
-	mg.startTask("loadSlave", txDev:getTxQueue(0), rxDev, args.size, args.flows, args.topology)
-	mg.startTask("timerSlave", txDev:getTxQueue(1), rxDev:getRxQueue(1), args.size, args.flows)
+	mg.startTask("loadSlave", txDev:getTxQueue(0), rxDev, args.size, args.flows, args.rate, args.topology)
+	mg.startTask("timerSlave", txDev:getTxQueue(1), rxDev:getRxQueue(1), 124, args.flows, args.rate)
 	mg.waitForTasks()
 end
 
@@ -60,9 +60,9 @@ end
 
 --- Runs on the sending NIC
 --- Generates UDP traffic and also fetches the stats
-function loadSlave(queue, rxDev, size, flows, topo)
+function loadSlave(queue, rxDev, size, flows, rate, topo)
 	log:info(green("Starting up: LoadSlave"))
-        log:info(green("Service topology:", topo))
+
 	mg.sleepMillis(1000)
 	-- retrieve the number of xstats on the recieving NIC
 	-- xstats related C definitions are in device.lua
@@ -88,36 +88,30 @@ function loadSlave(queue, rxDev, size, flows, topo)
 
 	local baseIP = parseIPAddress(DST_IP)
         local counter = 0
+
+	-- Standard IMIX packet sizes
+	local sizes = {60, 60, 60, 60, 60, 60, 60, 566, 566, 566, 566, 1510}
+
         local limiter = timer:new(interval)
+        local global_limiter = timer:new(20000)
 
-        -- Standard IMIX packet sizes
-        local sizes = {60, 60, 60, 60, 60, 60, 60, 566, 566, 566, 566, 1510}
+        local r = 0
+        --local rate= 7600
 
-        local rate= 5000
+	os.execute("./scripts/start_sfc.sh ".. topo .. " &")
 
-	os.execute("./scripts/start_sfc.sh "..topo.." &")
-
-	mg.sleepMillis(2500)
-	--os.execute("./scripts/perf.sh")
-        os.execute("./scripts/pcm.sh")
+	mg.sleepMillis(3000)
+	os.execute("./scripts/pcm.sh")
 
 	-- send out UDP packets until the user stops the script
 	while mg.running() do
 		bufs:alloc(size)
-		
-        	if limiter:expired()
-        	then
-            		print(interval .. " expired")
-			limiter:reset()
-                      	rate = math.random(1000, 7500) 
-			print("Packet rate adjusted to " .. rate .. " Mbps")
-        	end
 
-		queue:setRate(rate)
-	
+                queue:setRate(rate)			
+
 		for i, buf in ipairs(bufs) do
-                        local newSize = sizes[math.random(#sizes)]
-                        buf:setSize(newSize)
+			local newSize = sizes[math.random(#sizes)]
+			buf:setSize(newSize)
 			local pkt = buf:getUdpPacket()
 			pkt.ip4.dst:set(baseIP + counter)
 			counter = incAndWrap(counter, flows) 
@@ -131,6 +125,7 @@ function loadSlave(queue, rxDev, size, flows, topo)
 		txCtr:update()
 		rxCtr:update()
        end
+
 end
 
 function timerSlave(txQueue, rxQueue, size, flows)
@@ -145,7 +140,7 @@ function timerSlave(txQueue, rxQueue, size, flows)
 
         local counter = 0
         local rateLimit = timer:new(1)
-        local baseIP = parseIPAddress(DST_IP)
+        local baseIP = parseIPAddress(SRC_IP_BASE)
 	latency = {}
         local t = 0
 	local timestamp_counter = 0
@@ -154,7 +149,7 @@ function timerSlave(txQueue, rxQueue, size, flows)
 		t = timestamper:measureLatency(size, function(buf)
 			fillUdpPacket(buf, size)
 			local pkt = buf:getUdpPacket()
-			pkt.ip4.dst:set(baseIP + counter)
+			pkt.ip4.src:set(baseIP + counter)
 			counter = incAndWrap(counter, flows)
 		end) 
 
@@ -170,7 +165,7 @@ function timerSlave(txQueue, rxQueue, size, flows)
         end
 
         -- print the latency stats after all the other stuff
-        mg.sleepMillis(30)
+        --mg.sleepMillis(30)
         
         print("Total timestamps: "..timestamp_counter.."\n")
 

@@ -32,9 +32,13 @@ else
   echo "The 'msr' module is already loaded."
 fi
 
-sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" -t "${CONFIG}" &
 
-end=$((SECONDS+1800))
+# clear the output files of the past experiments
+sudo rm -f "${ONVM_HOME}/nf_out.csv"
+
+sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/constant_rate.lua "${PORT0}" "${PORT1}" -t "${CONFIG}" &
+
+end=$((SECONDS+500))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
@@ -45,7 +49,5 @@ sudo killall onvm_mgr
 
 cp "${ONVM_HOME}/nf_out.csv" .
 
-sudo killall pcm
-sudo killall pcm-memory
-sudo killall pcm-pcie
+sudo killall perf
 sudo killall MoonGen

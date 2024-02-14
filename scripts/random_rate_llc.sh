@@ -7,7 +7,7 @@ SCRIPT_DIR="${PROJECT_HOME}/scripts"
 MOONGEN_HOME="/home/tzhang/MoonGen"
 PORT0=0
 PORT1=1
-NFS=( "firewall" "ndpi_stats" "nf_router" "payload_scan" "bridge" )
+
 
 # Check if the script is executed with sudo privileges
 if [ "$EUID" -ne 0 ]; then
