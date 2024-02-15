@@ -30,7 +30,7 @@ function configure(parser)
 	parser:description("Generates UDP traffic and prints out device statistics. Edit the source to modify constants like IPs.")
 	parser:argument("txDev", "Device to transmit from."):convert(tonumber)
 	parser:argument("rxDev", "Device to receive from."):convert(tonumber)
-	parser:option("-r --rate", "Transmit rate in Mbit/s."):default(5000):convert(tonumber)
+	parser:option("-r --rate", "Transmit rate in Mbit/s."):default(10000):convert(tonumber)
 	parser:option("-f --flows", "Number of flows (randomized source IP)."):default(2):convert(tonumber)
 	parser:option("-s --size", "Packet size."):default(60):convert(tonumber)
         parser:option("-t --topology", "Network service topology."):default("linear"):convert(tostring)
@@ -91,12 +91,6 @@ function loadSlave(queue, rxDev, size, flows, rate, topo)
 
 	-- Standard IMIX packet sizes
 	local sizes = {60, 60, 60, 60, 60, 60, 60, 566, 566, 566, 566, 1510}
-
-        local limiter = timer:new(interval)
-        local global_limiter = timer:new(20000)
-
-        local r = 0
-        --local rate= 7600
 
 	os.execute("./scripts/start_sfc.sh ".. topo .. " &")
 

@@ -38,7 +38,7 @@ sudo rm -f "${ONVM_HOME}/nf_out.csv"
 
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/constant_rate.lua "${PORT0}" "${PORT1}" -t "${CONFIG}" &
 
-end=$((SECONDS+500))
+end=$((SECONDS+620))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
@@ -49,5 +49,7 @@ sudo killall onvm_mgr
 
 cp "${ONVM_HOME}/nf_out.csv" .
 
-sudo killall perf
+sudo killall pcm
+sudo killall pcm-memory
+sudo killall pcm-pcie
 sudo killall MoonGen
