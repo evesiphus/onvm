@@ -97,7 +97,7 @@ function loadSlave(queue, rxDev, size, flows, topo)
 
 	os.execute("./scripts/start_sfc.sh "..topo.." &")
 
-	mg.sleepMillis(2500)
+	mg.sleepMillis(3000)
 	--os.execute("./scripts/perf.sh")
         os.execute("./scripts/pcm.sh")
 
