@@ -15,10 +15,10 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# Designate a SFC configuration if necessary.
 if [ $# -gt 0 ]; then
     CONFIG=$1
 fi
-
 
 # clear the output files of the past experiments
 sudo rm -f "${ONVM_HOME}/nf_out.csv"
@@ -33,18 +33,21 @@ else
 fi
 
 
-# clear the output files of the past experiments
+# clear ONVM's output files of the past experiments
 sudo rm -f "${ONVM_HOME}/nf_out.csv"
 
+# Launch MoonGen for traffic generation and measurement. Start the SFC configuration during the process.
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/constant_rate.lua "${PORT0}" "${PORT1}" -t "${CONFIG}" &
 
-end=$((SECONDS+620))
+# Specify the experiment duration.
+end=$((SECONDS+1500))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
     :
 done
 
+# Clean up.
 sudo killall onvm_mgr
 
 cp "${ONVM_HOME}/nf_out.csv" .
