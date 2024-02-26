@@ -34,7 +34,7 @@ def generate_ddio_allocation(current_ddio_hex):
     # Convert back to hex
     new_ddio_hex = hex(int(''.join(new_ddio_bin), 2)).upper().replace('0X', '0x').zfill(5)
 
-    return new_ddio_hex
+    return new_ddio_hex if str(new_ddio_hex) != "000x0" else 0x60000
 
 # Example usage
 current_ddio_hex = "60000"

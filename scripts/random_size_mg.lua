@@ -23,7 +23,7 @@ local DST_IP      = "10.0.0.1"
 local SRC_PORT    = 1234
 local DST_PORT    = 319
 
-local interval = 20
+local interval = 10
 local C = ffi.C
 
 function configure(parser)
@@ -97,7 +97,7 @@ function loadSlave(queue, rxDev, size, flows, topo)
         local ctr = 1
         local limiter = timer:new(interval)
 
-        local sizes = {60, 124, 252, 508, 1020, 1514}
+        local sizes = {124, 252, 508, 1020, 1024, 1024, 1514, 1514}
         local newSize = sizes[ctr]
 
         print("Initial size: " .. newSize)

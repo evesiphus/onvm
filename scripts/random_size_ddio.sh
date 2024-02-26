@@ -44,7 +44,7 @@ while [ $SECONDS -lt $end ]; do
     ddio="$(python3 scripts/ddio_ways.py)"
     echo -e "DDIO ways: ${ddio}"
     sudo wrmsr 0xc8b "${ddio}"
-    sleep 10
+    sleep 30
 done
 
 sudo kill "${PID}"
