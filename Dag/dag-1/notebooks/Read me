@@ -1,0 +1,13 @@
+Read me:
+    1- dag-1-data_extraction.ipynb
+       extract the data from data file to dataset file, pay attention to the pre_seq function
+    2- dag-1.ipynb
+       First glance of data structure
+    3- dag-1-combine-csv.ipynb
+       combine several paralle csv file into one, and reorder the index: generate load-stimulus-global/resource-stimulus-global
+    4- dag1-load-stimulus.ipynb
+       data process using the csv file generated from the step 3
+    5- dag1-resource-stimulus.ipynb
+       data process using the csv file generated from the step 3
+      
+Have fun!
