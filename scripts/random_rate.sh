@@ -45,7 +45,7 @@ fi
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" -t "${CONFIG}" &
 
 # Set up the duration of the experiment.
-end=$((SECONDS+1500))
+end=$((SECONDS+20000))
 
 # Run the experiment for the specified duration.
 while [ $SECONDS -lt $end ]; do
