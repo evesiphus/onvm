@@ -1,0 +1,32 @@
+{
+        "globals": [
+                {
+                        "directory": "logs"
+                }
+        ],
+	"firewall": [
+                {
+                        "parameters": "1 -d 2 -f /home/tzhang/rca-nfv/opennetvm/dag-1/config/rules.json"
+                }
+        ],
+        "nf_router": [
+                {
+                        "parameters": "2 -f /home/tzhang/rca-nfv/opennetvm/dag-1/config/route.conf"
+                }
+        ],
+        "ndpi_stats": [
+                {
+                        "parameters": "3 -d 5"
+                }
+        ],
+        "payload_scan_tb": [
+                {
+                        "parameters": "4 -d 5 -s 1 -i -R 10"
+                }
+        ],
+        "bridge": [
+                {
+                        "parameters": "5"
+                }
+        ]
+}
