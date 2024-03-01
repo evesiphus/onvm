@@ -45,7 +45,7 @@ fi
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/random_rate.lua  "${PORT0}" "${PORT1}" -t "${CONFIG}" &
 
 # Set up the duration of the experiment.
-end=$((SECONDS+20000))
+end=$((SECONDS+10000))
 
 # Run the experiment for the specified duration.
 while [ $SECONDS -lt $end ]; do
@@ -58,7 +58,7 @@ sudo killall onvm_mgr
 
 cp "${ONVM_HOME}/nf_out.csv" .
 
-sudo killall pcm
-sudo killall pcm-memory
-sudo killall pcm-pcie
+sudo killall -9 pcm
+sudo killall -9 pcm-memory
+sudo killall -9 pcm-pcie
 sudo killall MoonGen
