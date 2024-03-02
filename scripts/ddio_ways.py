@@ -1,4 +1,4 @@
-import random 
+import random
 
 def generate_ddio_allocation(current_ddio_hex):
     # Convert hex to binary, ensuring it's padded to represent 20 bits

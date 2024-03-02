@@ -23,7 +23,7 @@ local DST_IP      = "10.0.0.1"
 local SRC_PORT    = 1234
 local DST_PORT    = 319
 
-local interval = 10
+local interval = 200
 local C = ffi.C
 
 function configure(parser)
