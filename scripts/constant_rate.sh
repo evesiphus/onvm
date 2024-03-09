@@ -45,7 +45,7 @@ sudo rm -f "${ONVM_HOME}/nf_out.csv"
 sudo "${MOONGEN_HOME}/build/MoonGen" "${SCRIPT_DIR}"/constant_rate.lua "${PORT0}" "${PORT1}" -t "${CONFIG}" -r "${RATE}" &
 
 # Specify the experiment duration.
-end=$((SECONDS+2000))
+end=$((SECONDS+7200))
 
 while [ $SECONDS -lt $end ]; do
     # Do what you want.
