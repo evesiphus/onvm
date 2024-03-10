@@ -1,0 +1,51 @@
+Read me:
+   
+There is five files under linear topology: data, dataset,figure,notebook,asset
+
+1- data:
+   fixed_rate
+   incremental
+   intervention
+   load_stimulus
+   resource_stimulus
+   random_rates
+   stress
+Under data file, there are several stimulus experiments
+
+2- datasets: 
+   csv file combined from data file
+   
+3- notebook:
+
+    A- data_extraction.ipynb
+       extract the data from data file to dataset file, pay attention to the pre_seq function. Load stimulus latency frenquency is double compaired with other features
+       
+    B- linear.ipynb 
+       First glance of data structure
+       linear-fixed_rate.ipynb
+       First glance of (fixed_rate) data structure + VNF classification
+       intervention/incremental/stress, we do not give analysis but it can be rebuilt easily
+       
+    C- linear-combine-csv.ipynb
+       combine several paralle csv file into one, and reorder the index: generate load-stimulus-global/resource-stimulus-global
+       
+    D- linear-load-stimulus.ipynb
+       data process using the csv file generated from the step 3
+       
+    E- PCA.ipynb
+       PCA analysis for both througput and latency
+       
+    F- Throughput prediction : preprasion and simple XAI
+       F-1: throughput-prediction_load_stimulus.ipynb
+       F-2: throughput_prediction_load_stimulus-slomo.ipynb
+       F-3: throughput_prediction_load_stimulus-XAI.ipynb
+       F-4: throughput_prediction_resource_stimulus-XAI.ipynb
+       F-5: throughput_prediction_plot.ipynb
+       
+    G: Latency
+       G-1: latency_processing.ipynb
+       G-2: latency_predictoin_load-resource_stimulus.ipynb ---------linear
+       G-3:latency_predictoin_load-resource_stimulus-dag-2.ipynb ---------dag-2
+       
+      
+Have fun!

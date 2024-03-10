@@ -1,0 +1,12 @@
+{
+        "globals": [
+                {
+                        "directory": "logs"
+                }
+        ],
+        "ndpi_stats": [
+                {
+                        "parameters": "1"
+                }
+        ]
+}
