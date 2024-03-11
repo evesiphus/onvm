@@ -4,4 +4,4 @@ onvm="/home/tzhang/openNetVM"
 
 cd "${onvm}"
 
-./onvm/go.sh -k 3 -n 0x3F8 -s stdout
+./onvm/go.sh 0,1,2,3 3 0x3F0 -s stdout
