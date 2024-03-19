@@ -55,3 +55,12 @@ Please refer to each SFC directory for data and further details.
 #### Files specific to the ONVM platform
 * __nf_out__: This file is output by ONVM to measure the statistics of the individual VNFs on a configured SFC. Some interesting statistics include the TX/RX rates, RX/TX counts, TX/RX drop rates, TX/RX drops. The column names are listed as follows:
 > nfs[i].tag, nfs[i].instance_id, nfs[i].service_id, nfs[i].thread_info.core, rx_pps, tx_pps, rx, tx, act_out, act_tonf, act_drop, nfs[i].thread_info.parent, state, rte_atomic16_read(&nfs[i].thread_info.children_cnt), rx_drop_rate, tx_drop_rate, rx_drop, tx_drop, act_next, act_buffer, act_returned 
+
+### Collaboration Acknowledgement
+This project involves a collaborative effort between Telecom Paris and Nokia Bell Labs. Our partnership reflects a shared commitment to advancing open-source software development, data science research, and applied AI/ML in networking. 
+
+We extend our gratitude to all contributors and supporters who have made this project possible. If you would like more details, questions, or suggestions about our project, please feel free to contact us at qiong.liu@telecom-paris.fr or tianzhu.zhang@nokia.com.
+
+Also, please refer to our paper if you find your this work interesting: 
+
+Qiong Liu, Tianzhu Zhang, Leonardo Linguaglossa. "__Non-invasive performance prediction of high-speed softwarized network services with limited knowledge,__" IEEE International Conference on Computer Communications (INFOCOM), 2024.
