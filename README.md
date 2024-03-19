@@ -56,11 +56,28 @@ Please refer to each SFC directory for data and further details.
 * __nf_out__: This file is output by ONVM to measure the statistics of the individual VNFs on a configured SFC. Some interesting statistics include the TX/RX rates, RX/TX counts, TX/RX drop rates, TX/RX drops. The column names are listed as follows:
 > nfs[i].tag, nfs[i].instance_id, nfs[i].service_id, nfs[i].thread_info.core, rx_pps, tx_pps, rx, tx, act_out, act_tonf, act_drop, nfs[i].thread_info.parent, state, rte_atomic16_read(&nfs[i].thread_info.children_cnt), rx_drop_rate, tx_drop_rate, rx_drop, tx_drop, act_next, act_buffer, act_returned 
 
+### Future (or ongoing) directions:
+Please refer to our paper if you find this work interesting: 
+
+Qiong Liu, Tianzhu Zhang, Leonardo Linguaglossa. "__Non-invasive performance prediction of high-speed softwarized network services with limited knowledge,__" IEEE International Conference on Computer Communications (INFOCOM), 2024.
+
+Although we are happy about the outcome, this paper has several drawbacks:
+
+1. Diverse NFV frameworks: Our current work mainly relies on openNetVM, and we should further consider other prevalent NFV frameworks, including FastClick, BESS, VPP, Snabb, F-Stack, Seastar, etc.
+2. Extension to other profiling tools: There is a huge collection of system profiling tools beyond perf, e.g., Intel PCM and Intel VTune profiler; we should explore the space more extensively.
+3. Explore the space of contention creation: provide more controlled means of contention injection to make the data more representative.
+4. Experimentation with 25/40 Gbps NICs. Hopefully, we can afford a 100 Gbps card in the future :)
+5. Performance diagnose: detect possible contentions and performance bottlenecks. The interesting scenarios include DDIO contention, LLC contention, CPU share contention, inter-NUMA misconfiguration, etc. 
+6. Polling vs. interrupt: Our current work focuses on poll-mode processing with each VNF monopolizing a core. In the interrupt mode, multiple VNFs can share the same core. 
+7. Run-to-completion vs. Pipeline: Our current work considers VNFs running in the pipeline mode. We will address the scenario where each SFC operates in the run-to-completion mode. 
+8. Compatibility with virtualization techniques: How to realize the same data collection when the VNFs are running inside the virtual machines and containers. Our current work considers VNFs running as bare-metal processes.
+9. Compatibility with cybersecurity measures: How to adapt our method to execution environments with protection mechanisms, e.g., Intel SGX and its variants?
+10. Extension to other acceleration techniques: Our current work uses DPDK as the acceleration stack. We must consider other kernel-bypassing (e.g., Netmap, Snabbco, PF\_ring buffer) or in-kernel techniques (e.g., eBPF/XDP).
+
+We are preparing a journal extension to address all these drawbacks. Stay tuned!! 
+
 ### Collaboration Acknowledgement
 This project involves a collaborative effort between Telecom Paris and Nokia Bell Labs. Our partnership reflects a shared commitment to advancing open-source software development, data science research, and applied AI/ML in networking. 
 
 We extend our gratitude to all contributors and supporters who have made this project possible. If you would like more details, questions, or suggestions about our project, please feel free to contact us at qiong.liu@telecom-paris.fr or tianzhu.zhang@nokia.com.
 
-Also, please refer to our paper if you find this work interesting: 
-
-Qiong Liu, Tianzhu Zhang, Leonardo Linguaglossa. "__Non-invasive performance prediction of high-speed softwarized network services with limited knowledge,__" IEEE International Conference on Computer Communications (INFOCOM), 2024.
