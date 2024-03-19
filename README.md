@@ -61,6 +61,6 @@ This project involves a collaborative effort between Telecom Paris and Nokia Bel
 
 We extend our gratitude to all contributors and supporters who have made this project possible. If you would like more details, questions, or suggestions about our project, please feel free to contact us at qiong.liu@telecom-paris.fr or tianzhu.zhang@nokia.com.
 
-Also, please refer to our paper if you find your this work interesting: 
+Also, please refer to our paper if you find this work interesting: 
 
 Qiong Liu, Tianzhu Zhang, Leonardo Linguaglossa. "__Non-invasive performance prediction of high-speed softwarized network services with limited knowledge,__" IEEE International Conference on Computer Communications (INFOCOM), 2024.
