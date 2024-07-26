@@ -13,7 +13,7 @@ for val in ${VNFs[@]}; do
    then
         echo -e "Skip non-existing VNF ${val}"
    else
-	core=$(ps -mo psr $(pidof ${val}) | tail -n 1)
+	core=$(ps -o psr $(pidof ${val}) | tail -n 1)
         echo -e "VNF ${val} runs on Core${core}"
 	sudo "${PCM_HOME}/pcm" -silent -nsys -yc ${core} -csv="${val}-pcm.csv" &
    fi
